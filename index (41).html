@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AIRO — La borne intelligente qui régénère vos casques audio</title>
+<meta name="description" content="AIRO est une borne connectée qui loue, recharge et désinfecte des casques audio par UV-C en libre-service. Découvrez la technologie, le fonctionnement et contactez notre équipe.">
+<link rel="icon" href="data:,">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- ============ SPRITE SVG (icônes & illustrations, 100% inline, aucune image externe) ============ -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="icon-uv" viewBox="0 0 48 48">
+      <circle cx="24" cy="24" r="10" fill="none" stroke="currentColor" stroke-width="2.5"/>
+      <g stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+        <line x1="24" y1="2" x2="24" y2="9"/>
+        <line x1="24" y1="39" x2="24" y2="46"/>
+        <line x1="2" y1="24" x2="9" y2="24"/>
+        <line x1="39" y1="24" x2="46" y2="24"/>
+        <line x1="8" y1="8" x2="13" y2="13"/>
+        <line x1="35" y1="35" x2="40" y2="40"/>
+        <line x1="40" y1="8" x2="35" y2="13"/>
+        <line x1="13" y1="35" x2="8" y2="40"/>
+      </g>
+    </symbol>
+    <symbol id="icon-lock" viewBox="0 0 48 48">
+      <rect x="10" y="21" width="28" height="21" rx="4" fill="none" stroke="currentColor" stroke-width="2.5"/>
+      <path d="M16 21v-6a8 8 0 0 1 16 0v6" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+      <circle cx="24" cy="31" r="3" fill="currentColor"/>
+      <line x1="24" y1="34" x2="24" y2="38" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+    </symbol>
+    <symbol id="icon-wifi" viewBox="0 0 48 48">
+      <path d="M6 18a26 26 0 0 1 36 0" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+      <path d="M13 26a16 16 0 0 1 22 0" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+      <path d="M20 34a6 6 0 0 1 8 0" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+      <circle cx="24" cy="40" r="2.4" fill="currentColor"/>
+    </symbol>
+    <symbol id="icon-shield" viewBox="0 0 48 48">
+      <path d="M24 4l16 6v12c0 11-7 18-16 22C15 40 8 33 8 22V10z" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round"/>
+      <path d="M16 24l6 6 11-13" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </symbol>
+    <symbol id="icon-bolt" viewBox="0 0 48 48">
+      <path d="M26 3 10 27h11l-3 18 19-27H26z" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round"/>
+    </symbol>
+    <symbol id="icon-nfc" viewBox="0 0 48 48">
+      <rect x="6" y="12" width="20" height="24" rx="3" fill="none" stroke="currentColor" stroke-width="2.5"/>
+      <path d="M32 15a13 13 0 0 1 0 18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+      <path d="M37 10a20 20 0 0 1 0 28" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+      <path d="M42 5a27 27 0 0 1 0 38" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+    </symbol>
+
+    <symbol id="svg-headphones" viewBox="0 0 220 170">
+      <path d="M20 118 C20 48 62 12 110 12 C158 12 200 48 200 118" fill="none" stroke="currentColor" stroke-width="8" stroke-linecap="round"/>
+      <rect x="6" y="106" width="34" height="52" rx="16" fill="currentColor" opacity="0.14" stroke="currentColor" stroke-width="6"/>
+      <rect x="180" y="106" width="34" height="52" rx="16" fill="currentColor" opacity="0.14" stroke="currentColor" stroke-width="6"/>
+      <circle class="hp-led hp-led--l" cx="23" cy="132" r="4" fill="currentColor"/>
+      <circle class="hp-led hp-led--r" cx="197" cy="132" r="4" fill="currentColor"/>
+    </symbol>
+
+    <filter id="grain-filter">
+      <feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="2" stitchTiles="stitch" result="noise"/>
+      <feColorMatrix in="noise" type="matrix" values="0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 0.35 0"/>
+    </filter>
+  </defs>
+</svg>
+
+<!-- Grain fixe (texture, aucune image externe) -->
+<div class="grain" aria-hidden="true"></div>
+
+<!-- Halo qui suit le curseur -->
+<div class="cursor-glow" id="cursorGlow" aria-hidden="true"></div>
+
+<!-- ============ HEADER ============ -->
+<header class="header" id="siteHeader">
+  <div class="container header__row">
+    <a href="#hero" class="brand">
+      <span class="brand__mark">A</span>
+      <span class="brand__name">AIRO</span>
+    </a>
+
+    <nav class="nav" id="mainNav">
+      <a href="#hero">Accueil</a>
+      <a href="#fonctionnement">Fonctionnement</a>
+      <a href="#technologie">Technologie</a>
+      <a href="#contact">Contact</a>
+    </nav>
+
+    <div class="header__actions">
+      <a href="#contact" class="btn btn--ghost">Nous contacter</a>
+      <a href="#contact" class="btn btn--primary">Demander une démo</a>
+      <button class="burger" id="burgerBtn" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="mobileNav">
+        <span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<div class="mobile-nav" id="mobileNav">
+  <a href="#hero">Accueil</a>
+  <a href="#fonctionnement">Fonctionnement</a>
+  <a href="#technologie">Technologie</a>
+  <a href="#contact">Contact</a>
+  <a href="#contact" class="btn btn--primary">Demander une démo</a>
+</div>
+
+<main>
+
+  <!-- ============ HERO ============ -->
+  <section class="hero" id="hero">
+    <div class="hero__bg" aria-hidden="true">
+      <div class="grid-lines"></div>
+      <div class="glow-orb glow-orb--a"></div>
+      <div class="glow-orb glow-orb--b"></div>
+    </div>
+
+    <div class="container hero__grid">
+      <div class="hero__copy reveal">
+        <p class="eyebrow">DISTRIBUTEUR AUTOMATIQUE DE CASQUES AUDIO</p>
+        <h1>La borne qui rend chaque casque <span class="text-accent">comme neuf.</span></h1>
+        <p class="hero__lead">
+          AIRO loue, recharge et désinfecte par UV-C des casques audio en libre-service.
+          Une porte motorisée, un cycle de traitement de 90 secondes, une supervision à distance —
+          posée dans une gare, un hôtel ou une salle de sport, elle ne s'arrête jamais.
+        </p>
+        <div class="hero__cta">
+          <a href="#fonctionnement" class="btn btn--primary btn--lg">
+            <span>Voir la borne en action</span>
+            <span class="btn__icon" aria-hidden="true">↗</span>
+          </a>
+          <a href="#contact" class="btn btn--outline btn--lg">
+            <span>Planifier une démo</span>
+            <span class="btn__icon" aria-hidden="true">↗</span>
+          </a>
+        </div>
+
+        <dl class="hero__stats">
+          <div>
+            <dt>90 s</dt>
+            <dd>Cycle de désinfection UV-C</dd>
+          </div>
+          <div>
+            <dt>99,4 %</dt>
+            <dd>Réduction des pathogènes de surface*</dd>
+          </div>
+          <div>
+            <dt>24 / 7</dt>
+            <dd>Disponibilité en libre-service</dd>
+          </div>
+        </dl>
+        <p class="hero__footnote">*Sur les surfaces exposées, résultats en environnement contrôlé.</p>
+      </div>
+
+      <div class="hero__visual reveal reveal--delay">
+        <p class="kiosk-hint">Cliquez sur la borne pour ouvrir la porte</p>
+        <div class="kiosk-scene">
+          <button class="kiosk" id="kioskHero" type="button" aria-pressed="false" aria-label="Ouvrir la porte de la borne AIRO">
+            <span class="kiosk__steam" aria-hidden="true">
+              <i></i><i></i><i></i><i></i>
+            </span>
+
+            <span class="kiosk__body">
+              <span class="kiosk__vents" aria-hidden="true"><i></i><i></i><i></i></span>
+
+              <span class="kiosk__screen">
+                <span class="kiosk__screen-head">
+                  <span class="kiosk__led" aria-hidden="true"></span>
+                  AIRO OS
+                </span>
+                <span class="kiosk__screen-line kiosk__screen-line--scan"></span>
+                <span class="kiosk__screen-text">TOUCHEZ POUR OUVRIR</span>
+              </span>
+
+              <span class="kiosk__interior" aria-hidden="true">
+                <span class="kiosk__interior-glow"></span>
+                <svg class="kiosk__headphone" viewBox="0 0 220 170"><use href="#svg-headphones"></use></svg>
+                <span class="kiosk__uv-bar"></span>
+              </span>
+
+              <span class="kiosk__door" id="kioskHeroDoor">
+                <span class="kiosk__door-panel">
+                  <span class="kiosk__door-window"></span>
+                  <span class="kiosk__handle"></span>
+                </span>
+              </span>
+
+              <span class="kiosk__nfc" aria-hidden="true">
+                <svg viewBox="0 0 48 48"><use href="#icon-nfc"></use></svg>
+              </span>
+              <span class="kiosk__base"></span>
+              <span class="kiosk__shadow" aria-hidden="true"></span>
+            </span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <a class="scroll-cue" href="#features" aria-label="Défiler vers le bas">
+      <span></span>
+    </a>
+  </section>
+
+  <!-- ============ FEATURES ============ -->
+  <section class="features" id="features">
+    <div class="container">
+      <div class="section-head reveal">
+        <p class="eyebrow">POURQUOI AIRO</p>
+        <h2>Une borne pensée pour tourner sans surveillance</h2>
+      </div>
+
+      <div class="features__grid">
+        <article class="feature-card reveal">
+          <span class="feature-card__stat" aria-hidden="true">90s</span>
+          <span class="feature-card__icon"><svg viewBox="0 0 48 48"><use href="#icon-uv"></use></svg></span>
+          <h3>Désinfection UV-C</h3>
+          <p>Chaque casque restitué traverse un cycle UV-C de 90 secondes qui neutralise les micro-organismes sur les coussinets et le serre-tête.</p>
+        </article>
+
+        <article class="feature-card reveal">
+          <span class="feature-card__icon"><svg viewBox="0 0 48 48"><use href="#icon-nfc"></use></svg></span>
+          <h3>Paiement sans contact</h3>
+          <p>Carte bancaire, mobile ou badge NFC : l'utilisateur déverrouille un casque en moins de 3 secondes, sans application à installer.</p>
+        </article>
+
+        <article class="feature-card reveal">
+          <span class="feature-card__icon"><svg viewBox="0 0 48 48"><use href="#icon-lock"></use></svg></span>
+          <h3>Verrouillage électromagnétique</h3>
+          <p>Chaque casier est sécurisé par un verrou électromagnétique piloté individuellement, avec détection d'ouverture forcée.</p>
+        </article>
+
+        <article class="feature-card reveal">
+          <span class="feature-card__icon"><svg viewBox="0 0 48 48"><use href="#icon-wifi"></use></svg></span>
+          <h3>Supervision à distance</h3>
+          <p>Connectivité 4G / Wi-Fi permanente : stock, niveaux de batterie et alertes techniques remontent en temps réel vers votre tableau de bord.</p>
+        </article>
+
+        <article class="feature-card reveal">
+          <span class="feature-card__icon"><svg viewBox="0 0 48 48"><use href="#icon-bolt"></use></svg></span>
+          <h3>Recharge intégrée</h3>
+          <p>Chaque casier recharge le casque en attente, garantissant une autonomie complète dès son retrait par le client suivant.</p>
+        </article>
+
+        <article class="feature-card reveal">
+          <span class="feature-card__icon"><svg viewBox="0 0 48 48"><use href="#icon-shield"></use></svg></span>
+          <h3>Robustesse IP54</h3>
+          <p>Châssis en acier et polymère traité, résistant aux intempéries et aux passages intensifs en espace public.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FONCTIONNEMENT (scroll-driven door) ============ -->
+  <section class="how" id="fonctionnement">
+    <div class="container">
+      <div class="section-head reveal">
+        <p class="eyebrow">FONCTIONNEMENT</p>
+        <h2>Faites défiler pour ouvrir la porte</h2>
+        <p class="section-lead">La porte de la borne s'entrouvre progressivement à mesure que vous descendez dans cette section — exactement comme le cycle réel, étape par étape.</p>
+      </div>
+    </div>
+
+    <div class="how__scroller" id="howScroller">
+      <div class="how__sticky">
+        <div class="container how__grid">
+
+          <div class="how__visual">
+            <div class="kiosk-scene kiosk-scene--how">
+              <div class="kiosk kiosk--how" id="kioskHow">
+                <span class="kiosk__steam" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+                <span class="kiosk__body">
+                  <span class="kiosk__vents" aria-hidden="true"><i></i><i></i><i></i></span>
+
+                  <span class="kiosk__screen">
+                    <span class="kiosk__screen-head">
+                      <span class="kiosk__led" aria-hidden="true"></span>
+                      AIRO OS
+                    </span>
+                    <span class="kiosk__screen-line kiosk__screen-line--scan"></span>
+                    <span class="kiosk__screen-text" id="howScreenText">SCAN EN COURS…</span>
+                  </span>
+
+                  <span class="kiosk__interior" aria-hidden="true">
+                    <span class="kiosk__interior-glow"></span>
+                    <svg class="kiosk__headphone" viewBox="0 0 220 170"><use href="#svg-headphones"></use></svg>
+                    <span class="kiosk__uv-bar"></span>
+                  </span>
+
+                  <span class="kiosk__door" id="kioskHowDoor">
+                    <span class="kiosk__door-panel">
+                      <span class="kiosk__door-window"></span>
+                      <span class="kiosk__handle"></span>
+                    </span>
+                  </span>
+
+                  <span class="kiosk__nfc" aria-hidden="true">
+                    <svg viewBox="0 0 48 48"><use href="#icon-nfc"></use></svg>
+                  </span>
+                  <span class="kiosk__base"></span>
+                  <span class="kiosk__shadow" aria-hidden="true"></span>
+                </span>
+              </div>
+              <div class="how__progress" aria-hidden="true">
+                <div class="how__progress-bar" id="howProgressBar"></div>
+              </div>
+            </div>
+          </div>
+
+          <ol class="how__steps" id="howSteps">
+            <li class="how__step" data-step="0">
+              <span class="how__step-index">01</span>
+              <h3>Identification &amp; paiement</h3>
+              <p>L'utilisateur touche l'écran, scanne son badge NFC ou sa carte bancaire sans contact. La borne vérifie la disponibilité d'un casque.</p>
+            </li>
+            <li class="how__step" data-step="1">
+              <span class="how__step-index">02</span>
+              <h3>Déverrouillage du casier</h3>
+              <p>Le verrou électromagnétique se libère et la porte motorisée s'entrouvre pour laisser apparaître le casque prêt à l'emploi.</p>
+            </li>
+            <li class="how__step" data-step="2">
+              <span class="how__step-index">03</span>
+              <h3>Ouverture complète</h3>
+              <p>La porte pivote entièrement sur son axe : le casque, chargé à 100 %, est présenté à l'utilisateur qui le retire d'un geste.</p>
+            </li>
+            <li class="how__step" data-step="3">
+              <span class="how__step-index">04</span>
+              <h3>Retour &amp; cycle UV-C</h3>
+              <p>Au retour, la porte se referme et déclenche automatiquement 90 secondes de désinfection UV-C avant la mise à disposition suivante.</p>
+            </li>
+          </ol>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ TECHNOLOGIE ============ -->
+  <section class="tech" id="technologie">
+    <div class="container">
+      <div class="section-head reveal">
+        <p class="eyebrow">TECHNOLOGIE</p>
+        <h2>Ce qu'il y a sous le capot</h2>
+        <p class="section-lead">Architecture modulaire, capteurs redondants et supervision centralisée : chaque borne AIRO est un objet connecté à part entière.</p>
+      </div>
+
+      <div class="tech__diagram-wrap reveal" id="techDiagramWrap">
+        <svg class="tech__diagram" viewBox="0 0 900 460" role="img" aria-label="Schéma technique de la borne AIRO">
+          <g class="diagram-links" stroke="currentColor" fill="none" stroke-width="2">
+            <path class="diagram-link" d="M450 230 L180 90"/>
+            <path class="diagram-link" d="M450 230 L450 60"/>
+            <path class="diagram-link" d="M450 230 L720 90"/>
+            <path class="diagram-link" d="M450 230 L150 340"/>
+            <path class="diagram-link" d="M450 230 L450 400"/>
+            <path class="diagram-link" d="M450 230 L750 340"/>
+          </g>
+
+          <g class="diagram-pulse" fill="currentColor">
+            <circle r="4" class="pulse-dot" style="offset-path:path('M450 230 L180 90')"></circle>
+            <circle r="4" class="pulse-dot" style="offset-path:path('M450 230 L450 60')"></circle>
+            <circle r="4" class="pulse-dot" style="offset-path:path('M450 230 L720 90')"></circle>
+            <circle r="4" class="pulse-dot" style="offset-path:path('M450 230 L150 340')"></circle>
+            <circle r="4" class="pulse-dot" style="offset-path:path('M450 230 L450 400')"></circle>
+            <circle r="4" class="pulse-dot" style="offset-path:path('M450 230 L750 340')"></circle>
+          </g>
+
+          <g class="diagram-node diagram-node--core" transform="translate(450 230)">
+            <circle r="54" />
+            <text y="-4">Unité de</text>
+            <text y="16">contrôle AIRO</text>
+          </g>
+
+          <g class="diagram-node" transform="translate(180 90)">
+            <circle r="42" />
+            <text y="-4">Capteur</text>
+            <text y="14">NFC / RFID</text>
+          </g>
+          <g class="diagram-node" transform="translate(450 60)">
+            <circle r="42" />
+            <text y="-4">Écran</text>
+            <text y="14">tactile</text>
+          </g>
+          <g class="diagram-node" transform="translate(720 90)">
+            <circle r="42" />
+            <text y="-4">Verrou</text>
+            <text y="14">électro-aimant</text>
+          </g>
+          <g class="diagram-node" transform="translate(150 340)">
+            <circle r="42" />
+            <text y="-4">Module</text>
+            <text y="14">UV-C</text>
+          </g>
+          <g class="diagram-node" transform="translate(450 400)">
+            <circle r="42" />
+            <text y="-4">Batterie</text>
+            <text y="14">Li-ion 12 h</text>
+          </g>
+          <g class="diagram-node" transform="translate(750 340)">
+            <circle r="42" />
+            <text y="-4">Connectivité</text>
+            <text y="14">4G / Wi-Fi</text>
+          </g>
+        </svg>
+      </div>
+
+      <div class="tech__cutaway-wrap">
+        <div class="tech__cutaway-copy reveal">
+          <h3>Coupe d'un casque compatible</h3>
+          <p>Chaque casier AIRO est calibré pour accueillir des casques circum-auraux équipés d'une coque renforcée et d'un chargement par contacts magnétiques.</p>
+          <ul class="tech__legend">
+            <li><span class="dot dot--1"></span> Coque externe renforcée</li>
+            <li><span class="dot dot--2"></span> Mousse à mémoire de forme</li>
+            <li><span class="dot dot--3"></span> Transducteur 40 mm</li>
+            <li><span class="dot dot--4"></span> Anneau d'exposition UV-C</li>
+            <li><span class="dot dot--5"></span> Contacts de charge magnétiques</li>
+          </ul>
+        </div>
+
+        <div class="tech__cutaway reveal">
+          <svg viewBox="0 0 420 340" role="img" aria-label="Coupe d'un casque audio">
+            <path d="M40 300 C10 260 10 100 70 55 C110 26 170 20 210 40 L210 300 Z" fill="none" stroke="currentColor" stroke-width="4" class="cut-shell"/>
+            <path d="M70 270 C50 235 52 115 92 82 C118 61 160 58 190 70 L190 270 Z" fill="currentColor" opacity="0.12" class="cut-foam"/>
+            <circle cx="128" cy="168" r="46" fill="none" stroke="currentColor" stroke-width="3" class="cut-driver"/>
+            <circle cx="128" cy="168" r="28" fill="none" stroke="currentColor" stroke-width="2" class="cut-driver"/>
+            <circle cx="128" cy="168" r="10" fill="currentColor" class="cut-driver"/>
+            <g class="cut-uv">
+              <path d="M204 60 v220" stroke="currentColor" stroke-width="6" stroke-linecap="round"/>
+              <g stroke="currentColor" stroke-width="2">
+                <line x1="214" y1="80" x2="228" y2="80"/>
+                <line x1="214" y1="120" x2="228" y2="120"/>
+                <line x1="214" y1="160" x2="228" y2="160"/>
+                <line x1="214" y1="200" x2="228" y2="200"/>
+                <line x1="214" y1="240" x2="228" y2="240"/>
+              </g>
+            </g>
+            <g class="cut-charge" stroke="currentColor" stroke-width="3">
+              <circle cx="196" cy="284" r="9" fill="none"/>
+              <circle cx="196" cy="284" r="3" fill="currentColor"/>
+            </g>
+
+            <g class="cut-callout" transform="translate(230 44)"><line x1="0" y1="6" x2="-8" y2="30" stroke="currentColor" stroke-width="1.5"/><text x="4" y="10">Coque externe</text></g>
+            <g class="cut-callout" transform="translate(230 100)"><line x1="0" y1="6" x2="-40" y2="90" stroke="currentColor" stroke-width="1.5"/><text x="4" y="10">Mousse mémoire</text></g>
+            <g class="cut-callout" transform="translate(230 168)"><line x1="0" y1="0" x2="-55" y2="0" stroke="currentColor" stroke-width="1.5"/><text x="4" y="4">Transducteur 40 mm</text></g>
+            <g class="cut-callout" transform="translate(236 216)"><line x1="0" y1="0" x2="-8" y2="-56" stroke="currentColor" stroke-width="1.5"/><text x="4" y="4">Anneau UV-C</text></g>
+            <g class="cut-callout" transform="translate(230 284)"><line x1="0" y1="0" x2="-15" y2="0" stroke="currentColor" stroke-width="1.5"/><text x="4" y="4">Contact de charge</text></g>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CTA BAND ============ -->
+  <section class="cta-band">
+    <div class="container cta-band__row reveal">
+      <div>
+        <h2>Prêt à installer une borne AIRO ?</h2>
+        <p>Nos équipes déploient une borne pilote en 4 à 6 semaines, supervision incluse.</p>
+      </div>
+      <a href="#contact" class="btn btn--primary btn--lg">
+        <span>Demander une démo</span>
+        <span class="btn__icon" aria-hidden="true">↗</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- ============ CONTACT ============ -->
+  <section class="contact" id="contact">
+    <div class="container contact__grid">
+      <div class="contact__info reveal">
+        <p class="eyebrow">CONTACT</p>
+        <h2>Parlons de votre projet</h2>
+        <p class="section-lead">Gare, hôtel, salle de sport, aéroport, campus : décrivez-nous votre site et nous reviendrons vers vous avec une configuration adaptée.</p>
+
+        <ul class="contact__list">
+          <li>
+            <strong>Email</strong>
+            <a href="mailto:contact@airo-machine.com">contact@airo-machine.com</a>
+          </li>
+          <li>
+            <strong>Téléphone</strong>
+            <a href="tel:+33184620917">+33 1 84 62 09 17</a>
+          </li>
+          <li>
+            <strong>Bureaux</strong>
+            <span>48 rue des Cévennes, 75015 Paris</span>
+          </li>
+        </ul>
+      </div>
+
+      <form class="contact__form reveal reveal--delay" id="contactForm" novalidate>
+        <div class="form-row">
+          <label for="name">Nom complet</label>
+          <input type="text" id="name" name="name" required autocomplete="name" placeholder="Jeanne Dupont">
+        </div>
+        <div class="form-row">
+          <label for="email">Adresse email</label>
+          <input type="email" id="email" name="email" required autocomplete="email" placeholder="jeanne@entreprise.com">
+        </div>
+        <div class="form-row">
+          <label for="company">Société / Site</label>
+          <input type="text" id="company" name="company" autocomplete="organization" placeholder="Gare Saint-Lazare">
+        </div>
+        <div class="form-row">
+          <label for="message">Message</label>
+          <textarea id="message" name="message" rows="5" required placeholder="Parlez-nous de votre projet, du volume estimé d'utilisateurs et du lieu d'installation."></textarea>
+        </div>
+        <button type="submit" class="btn btn--primary btn--lg btn--block">
+          <span>Envoyer la demande</span>
+          <span class="btn__icon" aria-hidden="true">↗</span>
+        </button>
+        <p class="form-note">L'envoi ouvre votre client mail habituel avec le message pré-rempli.</p>
+      </form>
+    </div>
+  </section>
+
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer class="footer">
+  <div class="container footer__row">
+    <a href="#hero" class="brand brand--footer">
+      <span class="brand__mark">A</span>
+      <span class="brand__name">AIRO</span>
+    </a>
+    <p>&copy; <span id="year"></span> AIRO. Tous droits réservés.</p>
+    <nav class="footer__nav">
+      <a href="#fonctionnement">Fonctionnement</a>
+      <a href="#technologie">Technologie</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
