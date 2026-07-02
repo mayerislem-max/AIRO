@@ -3,61 +3,140 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AIRO — La borne intelligente qui régénère vos casques audio</title>
-<meta name="description" content="AIRO est une borne connectée qui loue, recharge et désinfecte des casques audio par UV-C en libre-service. Découvrez la technologie, le fonctionnement et contactez notre équipe.">
-<link rel="icon" href="data:,">
+<title>AIRO — Nettoyage de casques par vapeur sèche</title>
+<meta name="description" content="AIRO nettoie, désinfecte et sèche les casques (moto, karting, sport auto, ski, équitation...) par vapeur sèche en libre-service. Machine automatique pour professionnels et particuliers.">
+<link rel="icon" href="logo-airo.png">
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<!-- ============ SPRITE SVG (icônes & illustrations, 100% inline, aucune image externe) ============ -->
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
   <defs>
-    <symbol id="icon-uv" viewBox="0 0 48 48">
-      <circle cx="24" cy="24" r="10" fill="none" stroke="currentColor" stroke-width="2.5"/>
-      <g stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
-        <line x1="24" y1="2" x2="24" y2="9"/>
-        <line x1="24" y1="39" x2="24" y2="46"/>
-        <line x1="2" y1="24" x2="9" y2="24"/>
-        <line x1="39" y1="24" x2="46" y2="24"/>
-        <line x1="8" y1="8" x2="13" y2="13"/>
-        <line x1="35" y1="35" x2="40" y2="40"/>
-        <line x1="40" y1="8" x2="35" y2="13"/>
-        <line x1="13" y1="35" x2="8" y2="40"/>
-      </g>
+    <symbol id="icon-steam" viewBox="0 0 48 48">
+      <path d="M14 40c4-4 4-8 0-12s-4-8 0-12" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+      <path d="M24 40c4-4 4-8 0-12s-4-8 0-12" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+      <path d="M34 40c4-4 4-8 0-12s-4-8 0-12" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
     </symbol>
-    <symbol id="icon-lock" viewBox="0 0 48 48">
-      <rect x="10" y="21" width="28" height="21" rx="4" fill="none" stroke="currentColor" stroke-width="2.5"/>
-      <path d="M16 21v-6a8 8 0 0 1 16 0v6" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
-      <circle cx="24" cy="31" r="3" fill="currentColor"/>
-      <line x1="24" y1="34" x2="24" y2="38" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
-    </symbol>
-    <symbol id="icon-wifi" viewBox="0 0 48 48">
-      <path d="M6 18a26 26 0 0 1 36 0" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
-      <path d="M13 26a16 16 0 0 1 22 0" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
-      <path d="M20 34a6 6 0 0 1 8 0" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
-      <circle cx="24" cy="40" r="2.4" fill="currentColor"/>
-    </symbol>
-    <symbol id="icon-shield" viewBox="0 0 48 48">
+    <symbol id="icon-shield-check" viewBox="0 0 48 48">
       <path d="M24 4l16 6v12c0 11-7 18-16 22C15 40 8 33 8 22V10z" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round"/>
       <path d="M16 24l6 6 11-13" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
     </symbol>
-    <symbol id="icon-bolt" viewBox="0 0 48 48">
-      <path d="M26 3 10 27h11l-3 18 19-27H26z" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round"/>
+    <symbol id="icon-wind" viewBox="0 0 48 48">
+      <path d="M4 16h26a6 6 0 1 0-6-6" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+      <path d="M4 32h32a6 6 0 1 1-6 6" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+      <path d="M4 24h20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
     </symbol>
-    <symbol id="icon-nfc" viewBox="0 0 48 48">
-      <rect x="6" y="12" width="20" height="24" rx="3" fill="none" stroke="currentColor" stroke-width="2.5"/>
-      <path d="M32 15a13 13 0 0 1 0 18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
-      <path d="M37 10a20 20 0 0 1 0 28" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
-      <path d="M42 5a27 27 0 0 1 0 38" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+    <symbol id="icon-helmet" viewBox="0 0 48 48">
+      <path d="M8 30c0-12 7-20 16-20s16 8 16 20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+      <path d="M6 30h36v3a5 5 0 0 1-5 5H11a5 5 0 0 1-5-5z" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round"/>
+      <path d="M16 30v-3a8 8 0 0 1 16 0v3" fill="none" stroke="currentColor" stroke-width="2.5"/>
     </symbol>
-
-    <symbol id="svg-headphones" viewBox="0 0 220 170">
-      <path d="M20 118 C20 48 62 12 110 12 C158 12 200 48 200 118" fill="none" stroke="currentColor" stroke-width="8" stroke-linecap="round"/>
-      <rect x="6" y="106" width="34" height="52" rx="16" fill="currentColor" opacity="0.14" stroke="currentColor" stroke-width="6"/>
-      <rect x="180" y="106" width="34" height="52" rx="16" fill="currentColor" opacity="0.14" stroke="currentColor" stroke-width="6"/>
-      <circle class="hp-led hp-led--l" cx="23" cy="132" r="4" fill="currentColor"/>
-      <circle class="hp-led hp-led--r" cx="197" cy="132" r="4" fill="currentColor"/>
+    <symbol id="icon-hand" viewBox="0 0 48 48">
+      <path d="M18 22V9a3 3 0 0 1 6 0v11" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+      <path d="M24 20V6a3 3 0 0 1 6 0v14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+      <path d="M30 21V9a3 3 0 0 1 6 0v20c0 8-5 15-14 15-6 0-9-3-13-9l-4-7a3 3 0 0 1 5-3l4 5" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </symbol>
+    <symbol id="icon-headset" viewBox="0 0 48 48">
+      <path d="M8 26v-2a16 16 0 0 1 32 0v2" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+      <rect x="6" y="24" width="8" height="14" rx="3" fill="none" stroke="currentColor" stroke-width="2.5"/>
+      <rect x="34" y="24" width="8" height="14" rx="3" fill="none" stroke="currentColor" stroke-width="2.5"/>
+      <path d="M42 30v4a6 6 0 0 1-6 6h-6" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+    </symbol>
+    <symbol id="icon-drop" viewBox="0 0 48 48">
+      <path d="M24 5C16 16 9 23 9 31a15 15 0 0 0 30 0c0-8-7-15-15-26z" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round"/>
+    </symbol>
+    <symbol id="icon-bacteria" viewBox="0 0 48 48">
+      <circle cx="24" cy="24" r="9" fill="none" stroke="currentColor" stroke-width="2.5"/>
+      <g stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+        <line x1="24" y1="4" x2="24" y2="10"/>
+        <line x1="24" y1="38" x2="24" y2="44"/>
+        <line x1="4" y1="24" x2="10" y2="24"/>
+        <line x1="38" y1="24" x2="44" y2="24"/>
+      </g>
+      <circle cx="24" cy="4" r="2.4" fill="currentColor"/>
+      <circle cx="24" cy="44" r="2.4" fill="currentColor"/>
+      <circle cx="4" cy="24" r="2.4" fill="currentColor"/>
+      <circle cx="44" cy="24" r="2.4" fill="currentColor"/>
+    </symbol>
+    <symbol id="icon-cloud" viewBox="0 0 48 48">
+      <path d="M14 34a9 9 0 0 1-1-17.9A11 11 0 0 1 34 15a8 8 0 0 1 0 19z" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round"/>
+    </symbol>
+    <symbol id="icon-sparkle" viewBox="0 0 48 48">
+      <path d="M24 4l4 15 15 4-15 4-4 15-4-15-15-4 15-4z" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round"/>
+    </symbol>
+    <symbol id="icon-moto" viewBox="0 0 48 48">
+      <circle cx="12" cy="34" r="6" fill="none" stroke="currentColor" stroke-width="2.5"/>
+      <circle cx="36" cy="34" r="6" fill="none" stroke="currentColor" stroke-width="2.5"/>
+      <path d="M12 34l8-14h10l6 8h6M20 20l6-6h6" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </symbol>
+    <symbol id="icon-kart" viewBox="0 0 48 48">
+      <circle cx="11" cy="35" r="5" fill="none" stroke="currentColor" stroke-width="2.5"/>
+      <circle cx="37" cy="35" r="5" fill="none" stroke="currentColor" stroke-width="2.5"/>
+      <path d="M6 30h8l4-8h12l6 8h6" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M18 22V14h6" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+    </symbol>
+    <symbol id="icon-flag" viewBox="0 0 48 48">
+      <path d="M10 4v40" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+      <path d="M10 6h26l-6 8 6 8H10z" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round"/>
+    </symbol>
+    <symbol id="icon-ski" viewBox="0 0 48 48">
+      <path d="M6 40l30-30" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+      <path d="M14 40l30-30" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+      <circle cx="34" cy="10" r="4" fill="none" stroke="currentColor" stroke-width="2.5"/>
+    </symbol>
+    <symbol id="icon-horse" viewBox="0 0 48 48">
+      <path d="M12 40V24c0-9 6-16 15-16 6 0 8 4 8 4l6-2-2 8-4 2v4l3 16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+      <circle cx="30" cy="12" r="2" fill="currentColor"/>
+    </symbol>
+    <symbol id="icon-grad" viewBox="0 0 48 48">
+      <path d="M24 8L4 17l20 9 20-9z" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round"/>
+      <path d="M13 22v10c0 3 5 6 11 6s11-3 11-6V22" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+      <path d="M42 17v11" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+    </symbol>
+    <symbol id="icon-cart" viewBox="0 0 48 48">
+      <path d="M6 8h6l5 22h20l5-15H15" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+      <circle cx="20" cy="40" r="3" fill="none" stroke="currentColor" stroke-width="2.5"/>
+      <circle cx="34" cy="40" r="3" fill="none" stroke="currentColor" stroke-width="2.5"/>
+    </symbol>
+    <symbol id="icon-calendar" viewBox="0 0 48 48">
+      <rect x="6" y="10" width="36" height="32" rx="4" fill="none" stroke="currentColor" stroke-width="2.5"/>
+      <path d="M6 19h36M15 6v8M33 6v8" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+    </symbol>
+    <symbol id="icon-handshake" viewBox="0 0 48 48">
+      <path d="M4 24l9-9 8 4 6-3 8 8-6 6-8-4-4 4" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M20 27l6 6-4 4-8-8M31 24l9 9" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </symbol>
+    <symbol id="icon-phone" viewBox="0 0 48 48">
+      <path d="M10 6h8l3 9-5 4c2 6 6 10 12 12l4-5 9 3v8a4 4 0 0 1-4 4C20 41 7 28 6 10a4 4 0 0 1 4-4z" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round"/>
+    </symbol>
+    <symbol id="icon-mail" viewBox="0 0 48 48">
+      <rect x="5" y="10" width="38" height="28" rx="4" fill="none" stroke="currentColor" stroke-width="2.5"/>
+      <path d="M6 13l18 15 18-15" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </symbol>
+    <symbol id="icon-instagram" viewBox="0 0 48 48">
+      <rect x="6" y="6" width="36" height="36" rx="11" fill="none" stroke="currentColor" stroke-width="2.5"/>
+      <circle cx="24" cy="24" r="9" fill="none" stroke="currentColor" stroke-width="2.5"/>
+      <circle cx="34" cy="14" r="2.2" fill="currentColor"/>
+    </symbol>
+    <symbol id="icon-tiktok" viewBox="0 0 48 48">
+      <path d="M27 5v25a7 7 0 1 1-6-7" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M27 5c1 6 5 10 11 11" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+    </symbol>
+    <symbol id="icon-tools" viewBox="0 0 48 48">
+      <path d="M30 8a9 9 0 0 0-11 11L7 31l6 6 12-12a9 9 0 0 0 11-11l-6 6-5-1-1-5z" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round"/>
+    </symbol>
+    <symbol id="icon-presentation" viewBox="0 0 48 48">
+      <rect x="6" y="8" width="36" height="22" rx="3" fill="none" stroke="currentColor" stroke-width="2.5"/>
+      <path d="M24 30v10M16 44h16" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+    </symbol>
+    <symbol id="icon-headphones-support" viewBox="0 0 48 48">
+      <path d="M8 26v-2a16 16 0 0 1 32 0v2" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+      <rect x="6" y="24" width="8" height="14" rx="3" fill="none" stroke="currentColor" stroke-width="2.5"/>
+      <rect x="34" y="24" width="8" height="14" rx="3" fill="none" stroke="currentColor" stroke-width="2.5"/>
+    </symbol>
+    <symbol id="icon-upload" viewBox="0 0 48 48">
+      <path d="M24 30V6m0 0l-8 8m8-8l8 8" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M8 30v8a4 4 0 0 0 4 4h24a4 4 0 0 0 4-4v-8" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
     </symbol>
 
     <filter id="grain-filter">
@@ -67,17 +146,13 @@
   </defs>
 </svg>
 
-<!-- Grain fixe (texture, aucune image externe) -->
 <div class="grain" aria-hidden="true"></div>
-
-<!-- Halo qui suit le curseur -->
 <div class="cursor-glow" id="cursorGlow" aria-hidden="true"></div>
 
-<!-- ============ HEADER ============ -->
 <header class="header" id="siteHeader">
-  <div class="container header__row">
+  <div class="header__row">
     <a href="#hero" class="brand">
-      <span class="brand__mark">A</span>
+      <img src="logo-airo.png" alt="AIRO" class="brand__logo">
       <span class="brand__name">AIRO</span>
     </a>
 
@@ -85,12 +160,13 @@
       <a href="#hero">Accueil</a>
       <a href="#fonctionnement">Fonctionnement</a>
       <a href="#technologie">Technologie</a>
+      <a href="#secteurs">Secteurs</a>
       <a href="#contact">Contact</a>
     </nav>
 
     <div class="header__actions">
       <a href="#contact" class="btn btn--ghost">Nous contacter</a>
-      <a href="#contact" class="btn btn--primary">Demander une démo</a>
+      <a href="#contact" class="btn btn--primary">Devenir partenaire</a>
       <button class="burger" id="burgerBtn" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="mobileNav">
         <span></span><span></span>
       </button>
@@ -102,234 +178,270 @@
   <a href="#hero">Accueil</a>
   <a href="#fonctionnement">Fonctionnement</a>
   <a href="#technologie">Technologie</a>
+  <a href="#secteurs">Secteurs</a>
   <a href="#contact">Contact</a>
-  <a href="#contact" class="btn btn--primary">Demander une démo</a>
+  <a href="#contact" class="btn btn--primary">Devenir partenaire</a>
 </div>
 
 <main>
 
-  <!-- ============ HERO ============ -->
+  <!-- ============ HERO — SALLE 3D ============ -->
   <section class="hero" id="hero">
-    <div class="hero__bg" aria-hidden="true">
-      <div class="grid-lines"></div>
-      <div class="glow-orb glow-orb--a"></div>
-      <div class="glow-orb glow-orb--b"></div>
-    </div>
 
-    <div class="container hero__grid">
-      <div class="hero__copy reveal">
-        <p class="eyebrow">DISTRIBUTEUR AUTOMATIQUE DE CASQUES AUDIO</p>
-        <h1>La borne qui rend chaque casque <span class="text-accent">comme neuf.</span></h1>
-        <p class="hero__lead">
-          AIRO loue, recharge et désinfecte par UV-C des casques audio en libre-service.
-          Une porte motorisée, un cycle de traitement de 90 secondes, une supervision à distance —
-          posée dans une gare, un hôtel ou une salle de sport, elle ne s'arrête jamais.
-        </p>
-        <div class="hero__cta">
-          <a href="#fonctionnement" class="btn btn--primary btn--lg">
-            <span>Voir la borne en action</span>
-            <span class="btn__icon" aria-hidden="true">↗</span>
-          </a>
-          <a href="#contact" class="btn btn--outline btn--lg">
-            <span>Planifier une démo</span>
-            <span class="btn__icon" aria-hidden="true">↗</span>
-          </a>
-        </div>
+    <!-- Desktop/tablette : traversée 3D pilotée par le scroll -->
+    <div class="room" id="room3d">
+      <div class="room__scroller" id="roomScroller">
+        <div class="room__sticky">
+          <canvas id="roomCanvas" class="room__canvas"></canvas>
 
-        <dl class="hero__stats">
-          <div>
-            <dt>90 s</dt>
-            <dd>Cycle de désinfection UV-C</dd>
+          <div class="room__panels">
+            <div class="room__panel is-active" data-stop="0">
+              <p class="eyebrow">NETTOYAGE DE CASQUES PAR VAPEUR SÈCHE</p>
+              <h1>L'hygiène des casques, <span class="text-accent">enfin automatisée.</span></h1>
+              <p class="room__lead">
+                AIRO nettoie, désinfecte et sèche les casques en libre-service par vapeur sèche haute performance.
+                Moto, karting, sport automobile, ski, équitation.
+              </p>
+              <div class="hero__cta">
+                <a href="#fonctionnement" class="btn btn--primary btn--lg">
+                  <span>Voir la machine</span>
+                  <span class="btn__icon" aria-hidden="true">↗</span>
+                </a>
+                <a href="#contact" class="btn btn--outline btn--lg">
+                  <span>Devenir partenaire</span>
+                  <span class="btn__icon" aria-hidden="true">↗</span>
+                </a>
+              </div>
+            </div>
+
+            <div class="room__panel" data-stop="1">
+              <p class="eyebrow">LA MACHINE</p>
+              <h2>Déposez votre casque. AIRO s'occupe du reste.</h2>
+              <div class="room__programs">
+                <div><span class="room__programs-name">Express</span><span class="room__programs-time">≈ 3 min</span></div>
+                <div><span class="room__programs-name">Standard</span><span class="room__programs-time">≈ 5 min</span></div>
+                <div><span class="room__programs-name">Intensif</span><span class="room__programs-time">≈ 9-10 min</span></div>
+              </div>
+            </div>
+
+            <div class="room__panel" data-stop="2">
+              <p class="eyebrow">PERFORMANCE</p>
+              <h2>Vapeur sèche haute performance</h2>
+              <dl class="hero__stats hero__stats--panel">
+                <div><dt>99,4 %</dt><dd>Bactéries éliminées*</dd></div>
+                <div><dt>3–10 min</dt><dd>Durée d'un cycle</dd></div>
+                <div><dt>100 %</dt><dd>Séchage intégré</dd></div>
+              </dl>
+              <p class="hero__footnote">*Sur les surfaces exposées au cycle de vapeur sèche.</p>
+            </div>
+
+            <div class="room__panel" data-stop="3">
+              <p class="eyebrow">PARTOUT OÙ UN CASQUE EST PORTÉ</p>
+              <h2>Moto, karting, sport auto, ski, équitation, formation.</h2>
+              <a href="#contact" class="btn btn--primary btn--lg">
+                <span>Devenir partenaire</span>
+                <span class="btn__icon" aria-hidden="true">↗</span>
+              </a>
+            </div>
           </div>
-          <div>
-            <dt>99,4 %</dt>
-            <dd>Réduction des pathogènes de surface*</dd>
-          </div>
-          <div>
-            <dt>24 / 7</dt>
-            <dd>Disponibilité en libre-service</dd>
-          </div>
-        </dl>
-        <p class="hero__footnote">*Sur les surfaces exposées, résultats en environnement contrôlé.</p>
-      </div>
 
-      <div class="hero__visual reveal reveal--delay">
-        <p class="kiosk-hint">Cliquez sur la borne pour ouvrir la porte</p>
-        <div class="kiosk-scene">
-          <button class="kiosk" id="kioskHero" type="button" aria-pressed="false" aria-label="Ouvrir la porte de la borne AIRO">
-            <span class="kiosk__steam" aria-hidden="true">
-              <i></i><i></i><i></i><i></i>
-            </span>
-
-            <span class="kiosk__body">
-              <span class="kiosk__vents" aria-hidden="true"><i></i><i></i><i></i></span>
-
-              <span class="kiosk__screen">
-                <span class="kiosk__screen-head">
-                  <span class="kiosk__led" aria-hidden="true"></span>
-                  AIRO OS
-                </span>
-                <span class="kiosk__screen-line kiosk__screen-line--scan"></span>
-                <span class="kiosk__screen-text">TOUCHEZ POUR OUVRIR</span>
-              </span>
-
-              <span class="kiosk__interior" aria-hidden="true">
-                <span class="kiosk__interior-glow"></span>
-                <svg class="kiosk__headphone" viewBox="0 0 220 170"><use href="#svg-headphones"></use></svg>
-                <span class="kiosk__uv-bar"></span>
-              </span>
-
-              <span class="kiosk__door" id="kioskHeroDoor">
-                <span class="kiosk__door-panel">
-                  <span class="kiosk__door-window"></span>
-                  <span class="kiosk__handle"></span>
-                </span>
-              </span>
-
-              <span class="kiosk__nfc" aria-hidden="true">
-                <svg viewBox="0 0 48 48"><use href="#icon-nfc"></use></svg>
-              </span>
-              <span class="kiosk__base"></span>
-              <span class="kiosk__shadow" aria-hidden="true"></span>
-            </span>
-          </button>
+          <div class="room__progress" aria-hidden="true"><div class="room__progress-bar" id="roomProgressBar"></div></div>
+          <a class="scroll-cue" href="#probleme" aria-label="Défiler vers le bas"><span></span></a>
         </div>
       </div>
     </div>
 
-    <a class="scroll-cue" href="#features" aria-label="Défiler vers le bas">
-      <span></span>
-    </a>
+    <!-- Mobile : version statique (photo réelle) -->
+    <div class="hero-fallback" id="heroFallback">
+      <div class="hero__bg" aria-hidden="true">
+        <div class="grid-lines"></div>
+        <div class="glow-orb glow-orb--a"></div>
+        <div class="glow-orb glow-orb--b"></div>
+      </div>
+
+      <div class="container hero__grid">
+        <div class="hero__copy reveal">
+          <p class="eyebrow">NETTOYAGE DE CASQUES PAR VAPEUR SÈCHE</p>
+          <h1>L'hygiène des casques, <span class="text-accent">enfin automatisée.</span></h1>
+          <p class="hero__lead">
+            AIRO nettoie, désinfecte et sèche les casques en libre-service par vapeur sèche haute performance.
+            Moto, karting, sport automobile, ski, équitation — une machine posée directement chez vous,
+            sans manipulation complexe.
+          </p>
+          <div class="hero__cta">
+            <a href="#fonctionnement" class="btn btn--primary btn--lg">
+              <span>Voir la machine</span>
+              <span class="btn__icon" aria-hidden="true">↗</span>
+            </a>
+            <a href="#contact" class="btn btn--outline btn--lg">
+              <span>Devenir partenaire</span>
+              <span class="btn__icon" aria-hidden="true">↗</span>
+            </a>
+          </div>
+
+          <dl class="hero__stats">
+            <div><dt>99,4 %</dt><dd>Bactéries éliminées*</dd></div>
+            <div><dt>3</dt><dd>Programmes (Express, Standard, Intensif)</dd></div>
+            <div><dt>3–10 min</dt><dd>Durée d'un cycle</dd></div>
+          </dl>
+          <p class="hero__footnote">*Sur les surfaces exposées au cycle de vapeur sèche.</p>
+        </div>
+
+        <div class="hero__visual reveal reveal--delay">
+          <div class="machine-shot">
+            <img src="machine-hero.jpg" alt="Machine AIRO de nettoyage de casques par vapeur sèche, deux compartiments A et B" class="machine-shot__img">
+          </div>
+        </div>
+      </div>
+
+      <a class="scroll-cue" href="#probleme" aria-label="Défiler vers le bas"><span></span></a>
+    </div>
   </section>
 
-  <!-- ============ FEATURES ============ -->
+  <!-- ============ PROBLÈME ============ -->
+  <section class="problem" id="probleme">
+    <div class="container">
+      <div class="section-head reveal">
+        <p class="eyebrow">LE CONSTAT</p>
+        <h2>Un casque protège votre tête. Mais qui protège votre casque ?</h2>
+        <p class="section-lead">Porté à même la peau, un casque accumule humidité, bactéries, odeurs et saletés — quel que soit son usage.</p>
+      </div>
+
+      <div class="problem__grid">
+        <article class="problem-card reveal">
+          <span class="problem-card__icon"><svg viewBox="0 0 48 48"><use href="#icon-drop"></use></svg></span>
+          <h3>Humidité</h3>
+        </article>
+        <article class="problem-card reveal">
+          <span class="problem-card__icon"><svg viewBox="0 0 48 48"><use href="#icon-bacteria"></use></svg></span>
+          <h3>Bactéries</h3>
+        </article>
+        <article class="problem-card reveal">
+          <span class="problem-card__icon"><svg viewBox="0 0 48 48"><use href="#icon-wind"></use></svg></span>
+          <h3>Odeurs</h3>
+        </article>
+        <article class="problem-card reveal">
+          <span class="problem-card__icon"><svg viewBox="0 0 48 48"><use href="#icon-sparkle"></use></svg></span>
+          <h3>Saletés</h3>
+        </article>
+      </div>
+      <p class="problem__footer reveal">Peu importe son usage, un casque subit les mêmes contraintes.</p>
+    </div>
+  </section>
+
+  <!-- ============ FEATURES (bento) ============ -->
   <section class="features" id="features">
     <div class="container">
       <div class="section-head reveal">
-        <p class="eyebrow">POURQUOI AIRO</p>
-        <h2>Une borne pensée pour tourner sans surveillance</h2>
+        <p class="eyebrow">LA SOLUTION AIRO</p>
+        <h2>Déposez votre casque. AIRO s'occupe du reste.</h2>
       </div>
 
       <div class="features__grid">
         <article class="feature-card reveal">
-          <span class="feature-card__stat" aria-hidden="true">90s</span>
-          <span class="feature-card__icon"><svg viewBox="0 0 48 48"><use href="#icon-uv"></use></svg></span>
-          <h3>Désinfection UV-C</h3>
-          <p>Chaque casque restitué traverse un cycle UV-C de 90 secondes qui neutralise les micro-organismes sur les coussinets et le serre-tête.</p>
+          <span class="feature-card__stat" aria-hidden="true">3-10</span>
+          <span class="feature-card__icon"><svg viewBox="0 0 48 48"><use href="#icon-steam"></use></svg></span>
+          <h3>Vapeur sèche haute performance</h3>
+          <p>Nettoie en profondeur les mousses et l'intérieur du casque, sans abîmer les matériaux ni les équipements.</p>
         </article>
 
         <article class="feature-card reveal">
-          <span class="feature-card__icon"><svg viewBox="0 0 48 48"><use href="#icon-nfc"></use></svg></span>
-          <h3>Paiement sans contact</h3>
-          <p>Carte bancaire, mobile ou badge NFC : l'utilisateur déverrouille un casque en moins de 3 secondes, sans application à installer.</p>
+          <span class="feature-card__icon"><svg viewBox="0 0 48 48"><use href="#icon-shield-check"></use></svg></span>
+          <h3>Désinfection prouvée</h3>
+          <p>Élimine 99,4 % des bactéries responsables des mauvaises odeurs.</p>
         </article>
 
         <article class="feature-card reveal">
-          <span class="feature-card__icon"><svg viewBox="0 0 48 48"><use href="#icon-lock"></use></svg></span>
-          <h3>Verrouillage électromagnétique</h3>
-          <p>Chaque casier est sécurisé par un verrou électromagnétique piloté individuellement, avec détection d'ouverture forcée.</p>
+          <span class="feature-card__icon"><svg viewBox="0 0 48 48"><use href="#icon-wind"></use></svg></span>
+          <h3>Séchage rapide intégré</h3>
+          <p>Casque sec et prêt à l'emploi en quelques minutes.</p>
         </article>
 
         <article class="feature-card reveal">
-          <span class="feature-card__icon"><svg viewBox="0 0 48 48"><use href="#icon-wifi"></use></svg></span>
-          <h3>Supervision à distance</h3>
-          <p>Connectivité 4G / Wi-Fi permanente : stock, niveaux de batterie et alertes techniques remontent en temps réel vers votre tableau de bord.</p>
+          <span class="feature-card__icon"><svg viewBox="0 0 48 48"><use href="#icon-helmet"></use></svg></span>
+          <h3>Compatible tous casques</h3>
+          <p>Moto, karting, sport automobile, équitation, ski, VTT et plus encore.</p>
         </article>
 
         <article class="feature-card reveal">
-          <span class="feature-card__icon"><svg viewBox="0 0 48 48"><use href="#icon-bolt"></use></svg></span>
-          <h3>Recharge intégrée</h3>
-          <p>Chaque casier recharge le casque en attente, garantissant une autonomie complète dès son retrait par le client suivant.</p>
+          <span class="feature-card__icon"><svg viewBox="0 0 48 48"><use href="#icon-hand"></use></svg></span>
+          <h3>Simple &amp; automatique</h3>
+          <p>Aucune manipulation complexe : sélection, dépôt, et AIRO s'occupe de tout.</p>
         </article>
 
         <article class="feature-card reveal">
-          <span class="feature-card__icon"><svg viewBox="0 0 48 48"><use href="#icon-shield"></use></svg></span>
-          <h3>Robustesse IP54</h3>
-          <p>Châssis en acier et polymère traité, résistant aux intempéries et aux passages intensifs en espace public.</p>
+          <span class="feature-card__icon"><svg viewBox="0 0 48 48"><use href="#icon-headset"></use></svg></span>
+          <h3>Compatible intercoms</h3>
+          <p>Fonctionne avec les casques équipés d'intercoms et d'accessoires électroniques.</p>
         </article>
       </div>
     </div>
   </section>
 
-  <!-- ============ FONCTIONNEMENT (scroll-driven door) ============ -->
+  <!-- ============ FONCTIONNEMENT ============ -->
   <section class="how" id="fonctionnement">
     <div class="container">
       <div class="section-head reveal">
         <p class="eyebrow">FONCTIONNEMENT</p>
-        <h2>Faites défiler pour ouvrir la porte</h2>
-        <p class="section-lead">La porte de la borne s'entrouvre progressivement à mesure que vous descendez dans cette section — exactement comme le cycle réel, étape par étape.</p>
+        <h2>Une expérience pensée pour l'utilisateur</h2>
+        <p class="section-lead">Quelques gestes suffisent. Survolez les points sur la machine pour comprendre chaque étape.</p>
       </div>
-    </div>
 
-    <div class="how__scroller" id="howScroller">
-      <div class="how__sticky">
-        <div class="container how__grid">
-
-          <div class="how__visual">
-            <div class="kiosk-scene kiosk-scene--how">
-              <div class="kiosk kiosk--how" id="kioskHow">
-                <span class="kiosk__steam" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
-                <span class="kiosk__body">
-                  <span class="kiosk__vents" aria-hidden="true"><i></i><i></i><i></i></span>
-
-                  <span class="kiosk__screen">
-                    <span class="kiosk__screen-head">
-                      <span class="kiosk__led" aria-hidden="true"></span>
-                      AIRO OS
-                    </span>
-                    <span class="kiosk__screen-line kiosk__screen-line--scan"></span>
-                    <span class="kiosk__screen-text" id="howScreenText">SCAN EN COURS…</span>
-                  </span>
-
-                  <span class="kiosk__interior" aria-hidden="true">
-                    <span class="kiosk__interior-glow"></span>
-                    <svg class="kiosk__headphone" viewBox="0 0 220 170"><use href="#svg-headphones"></use></svg>
-                    <span class="kiosk__uv-bar"></span>
-                  </span>
-
-                  <span class="kiosk__door" id="kioskHowDoor">
-                    <span class="kiosk__door-panel">
-                      <span class="kiosk__door-window"></span>
-                      <span class="kiosk__handle"></span>
-                    </span>
-                  </span>
-
-                  <span class="kiosk__nfc" aria-hidden="true">
-                    <svg viewBox="0 0 48 48"><use href="#icon-nfc"></use></svg>
-                  </span>
-                  <span class="kiosk__base"></span>
-                  <span class="kiosk__shadow" aria-hidden="true"></span>
-                </span>
-              </div>
-              <div class="how__progress" aria-hidden="true">
-                <div class="how__progress-bar" id="howProgressBar"></div>
-              </div>
-            </div>
+      <div class="how__grid">
+        <div class="how__visual reveal">
+          <div class="machine-shot machine-shot--annotated">
+            <img src="machine-hero.jpg" alt="Machine AIRO annotée : écran, paiement, compartiments A et B" class="machine-shot__img">
+            <button class="hotspot" style="--x: 29%; --y: 20.5%;" data-step="0" aria-label="Étape 1 : choisissez votre programme">
+              <span class="hotspot__dot">1</span>
+            </button>
+            <button class="hotspot" style="--x: 29%; --y: 32%;" data-step="1" aria-label="Étape 2 : payez">
+              <span class="hotspot__dot">2</span>
+            </button>
+            <button class="hotspot" style="--x: 29%; --y: 50%;" data-step="2" aria-label="Étape 3 : déposez votre casque dans un casier">
+              <span class="hotspot__dot">3</span>
+            </button>
+            <button class="hotspot" style="--x: 29%; --y: 73%;" data-step="3" aria-label="Étape 4 : récupérez votre casque propre et sec">
+              <span class="hotspot__dot">4</span>
+            </button>
           </div>
+        </div>
 
-          <ol class="how__steps" id="howSteps">
-            <li class="how__step" data-step="0">
-              <span class="how__step-index">01</span>
-              <h3>Identification &amp; paiement</h3>
-              <p>L'utilisateur touche l'écran, scanne son badge NFC ou sa carte bancaire sans contact. La borne vérifie la disponibilité d'un casque.</p>
-            </li>
-            <li class="how__step" data-step="1">
-              <span class="how__step-index">02</span>
-              <h3>Déverrouillage du casier</h3>
-              <p>Le verrou électromagnétique se libère et la porte motorisée s'entrouvre pour laisser apparaître le casque prêt à l'emploi.</p>
-            </li>
-            <li class="how__step" data-step="2">
-              <span class="how__step-index">03</span>
-              <h3>Ouverture complète</h3>
-              <p>La porte pivote entièrement sur son axe : le casque, chargé à 100 %, est présenté à l'utilisateur qui le retire d'un geste.</p>
-            </li>
-            <li class="how__step" data-step="3">
-              <span class="how__step-index">04</span>
-              <h3>Retour &amp; cycle UV-C</h3>
-              <p>Au retour, la porte se referme et déclenche automatiquement 90 secondes de désinfection UV-C avant la mise à disposition suivante.</p>
-            </li>
-          </ol>
+        <ol class="how__steps" id="howSteps">
+          <li class="how__step" data-step="0">
+            <span class="how__step-index">01</span>
+            <h3>Choisissez votre programme</h3>
+            <p>Express (≈ 3 min), Standard (≈ 5 min) ou Intensif (≈ 9-10 min) — adapté à votre besoin sur l'écran tactile.</p>
+          </li>
+          <li class="how__step" data-step="1">
+            <span class="how__step-index">02</span>
+            <h3>Payez</h3>
+            <p>Paiement sécurisé directement sur la machine, sans application à installer.</p>
+          </li>
+          <li class="how__step" data-step="2">
+            <span class="how__step-index">03</span>
+            <h3>Déposez votre casque</h3>
+            <p>Placez-le dans le casier A ou B. AIRO lance automatiquement le cycle de vapeur sèche.</p>
+          </li>
+          <li class="how__step" data-step="3">
+            <span class="how__step-index">04</span>
+            <h3>Récupérez votre casque</h3>
+            <p>Propre, désinfecté et sec, prêt à être reporté.</p>
+          </li>
+        </ol>
+      </div>
 
+      <div class="programs reveal">
+        <div class="programs__item">
+          <span class="programs__name">Express</span>
+          <span class="programs__time">≈ 3 min</span>
+        </div>
+        <div class="programs__item">
+          <span class="programs__name">Standard</span>
+          <span class="programs__time">≈ 5 min</span>
+        </div>
+        <div class="programs__item">
+          <span class="programs__name">Intensif</span>
+          <span class="programs__time">≈ 9-10 min</span>
         </div>
       </div>
     </div>
@@ -340,111 +452,169 @@
     <div class="container">
       <div class="section-head reveal">
         <p class="eyebrow">TECHNOLOGIE</p>
-        <h2>Ce qu'il y a sous le capot</h2>
-        <p class="section-lead">Architecture modulaire, capteurs redondants et supervision centralisée : chaque borne AIRO est un objet connecté à part entière.</p>
+        <h2>Une technologie conçue pour respecter votre casque</h2>
+        <p class="section-lead">Nettoyer en profondeur, sans compromis sur les matériaux ni les équipements.</p>
       </div>
 
-      <div class="tech__diagram-wrap reveal" id="techDiagramWrap">
-        <svg class="tech__diagram" viewBox="0 0 900 460" role="img" aria-label="Schéma technique de la borne AIRO">
-          <g class="diagram-links" stroke="currentColor" fill="none" stroke-width="2">
-            <path class="diagram-link" d="M450 230 L180 90"/>
-            <path class="diagram-link" d="M450 230 L450 60"/>
-            <path class="diagram-link" d="M450 230 L720 90"/>
-            <path class="diagram-link" d="M450 230 L150 340"/>
-            <path class="diagram-link" d="M450 230 L450 400"/>
-            <path class="diagram-link" d="M450 230 L750 340"/>
-          </g>
-
-          <g class="diagram-pulse" fill="currentColor">
-            <circle r="4" class="pulse-dot" style="offset-path:path('M450 230 L180 90')"></circle>
-            <circle r="4" class="pulse-dot" style="offset-path:path('M450 230 L450 60')"></circle>
-            <circle r="4" class="pulse-dot" style="offset-path:path('M450 230 L720 90')"></circle>
-            <circle r="4" class="pulse-dot" style="offset-path:path('M450 230 L150 340')"></circle>
-            <circle r="4" class="pulse-dot" style="offset-path:path('M450 230 L450 400')"></circle>
-            <circle r="4" class="pulse-dot" style="offset-path:path('M450 230 L750 340')"></circle>
-          </g>
-
-          <g class="diagram-node diagram-node--core" transform="translate(450 230)">
-            <circle r="54" />
-            <text y="-4">Unité de</text>
-            <text y="16">contrôle AIRO</text>
-          </g>
-
-          <g class="diagram-node" transform="translate(180 90)">
-            <circle r="42" />
-            <text y="-4">Capteur</text>
-            <text y="14">NFC / RFID</text>
-          </g>
-          <g class="diagram-node" transform="translate(450 60)">
-            <circle r="42" />
-            <text y="-4">Écran</text>
-            <text y="14">tactile</text>
-          </g>
-          <g class="diagram-node" transform="translate(720 90)">
-            <circle r="42" />
-            <text y="-4">Verrou</text>
-            <text y="14">électro-aimant</text>
-          </g>
-          <g class="diagram-node" transform="translate(150 340)">
-            <circle r="42" />
-            <text y="-4">Module</text>
-            <text y="14">UV-C</text>
-          </g>
-          <g class="diagram-node" transform="translate(450 400)">
-            <circle r="42" />
-            <text y="-4">Batterie</text>
-            <text y="14">Li-ion 12 h</text>
-          </g>
-          <g class="diagram-node" transform="translate(750 340)">
-            <circle r="42" />
-            <text y="-4">Connectivité</text>
-            <text y="14">4G / Wi-Fi</text>
-          </g>
-        </svg>
-      </div>
-
-      <div class="tech__cutaway-wrap">
-        <div class="tech__cutaway-copy reveal">
-          <h3>Coupe d'un casque compatible</h3>
-          <p>Chaque casier AIRO est calibré pour accueillir des casques circum-auraux équipés d'une coque renforcée et d'un chargement par contacts magnétiques.</p>
-          <ul class="tech__legend">
-            <li><span class="dot dot--1"></span> Coque externe renforcée</li>
-            <li><span class="dot dot--2"></span> Mousse à mémoire de forme</li>
-            <li><span class="dot dot--3"></span> Transducteur 40 mm</li>
-            <li><span class="dot dot--4"></span> Anneau d'exposition UV-C</li>
-            <li><span class="dot dot--5"></span> Contacts de charge magnétiques</li>
-          </ul>
-        </div>
-
+      <div class="tech__grid">
         <div class="tech__cutaway reveal">
-          <svg viewBox="0 0 420 340" role="img" aria-label="Coupe d'un casque audio">
-            <path d="M40 300 C10 260 10 100 70 55 C110 26 170 20 210 40 L210 300 Z" fill="none" stroke="currentColor" stroke-width="4" class="cut-shell"/>
-            <path d="M70 270 C50 235 52 115 92 82 C118 61 160 58 190 70 L190 270 Z" fill="currentColor" opacity="0.12" class="cut-foam"/>
-            <circle cx="128" cy="168" r="46" fill="none" stroke="currentColor" stroke-width="3" class="cut-driver"/>
-            <circle cx="128" cy="168" r="28" fill="none" stroke="currentColor" stroke-width="2" class="cut-driver"/>
-            <circle cx="128" cy="168" r="10" fill="currentColor" class="cut-driver"/>
-            <g class="cut-uv">
-              <path d="M204 60 v220" stroke="currentColor" stroke-width="6" stroke-linecap="round"/>
-              <g stroke="currentColor" stroke-width="2">
-                <line x1="214" y1="80" x2="228" y2="80"/>
-                <line x1="214" y1="120" x2="228" y2="120"/>
-                <line x1="214" y1="160" x2="228" y2="160"/>
-                <line x1="214" y1="200" x2="228" y2="200"/>
-                <line x1="214" y1="240" x2="228" y2="240"/>
-              </g>
-            </g>
-            <g class="cut-charge" stroke="currentColor" stroke-width="3">
-              <circle cx="196" cy="284" r="9" fill="none"/>
-              <circle cx="196" cy="284" r="3" fill="currentColor"/>
-            </g>
-
-            <g class="cut-callout" transform="translate(230 44)"><line x1="0" y1="6" x2="-8" y2="30" stroke="currentColor" stroke-width="1.5"/><text x="4" y="10">Coque externe</text></g>
-            <g class="cut-callout" transform="translate(230 100)"><line x1="0" y1="6" x2="-40" y2="90" stroke="currentColor" stroke-width="1.5"/><text x="4" y="10">Mousse mémoire</text></g>
-            <g class="cut-callout" transform="translate(230 168)"><line x1="0" y1="0" x2="-55" y2="0" stroke="currentColor" stroke-width="1.5"/><text x="4" y="4">Transducteur 40 mm</text></g>
-            <g class="cut-callout" transform="translate(236 216)"><line x1="0" y1="0" x2="-8" y2="-56" stroke="currentColor" stroke-width="1.5"/><text x="4" y="4">Anneau UV-C</text></g>
-            <g class="cut-callout" transform="translate(230 284)"><line x1="0" y1="0" x2="-15" y2="0" stroke="currentColor" stroke-width="1.5"/><text x="4" y="4">Contact de charge</text></g>
-          </svg>
+          <img src="helmet-cutaway.jpg" alt="Coupe d'un casque montrant la circulation de la vapeur sèche à l'intérieur" loading="lazy">
         </div>
+
+        <div class="tech__list reveal reveal--delay">
+          <div class="tech__item">
+            <span class="tech__item-icon"><svg viewBox="0 0 48 48"><use href="#icon-steam"></use></svg></span>
+            <div>
+              <h3>Vapeur sèche</h3>
+              <p>Nettoie les mousses en profondeur.</p>
+            </div>
+          </div>
+          <div class="tech__item">
+            <span class="tech__item-icon"><svg viewBox="0 0 48 48"><use href="#icon-bacteria"></use></svg></span>
+            <div>
+              <h3>Désinfection</h3>
+              <p>Réduit les bactéries responsables des mauvaises odeurs.</p>
+            </div>
+          </div>
+          <div class="tech__item">
+            <span class="tech__item-icon"><svg viewBox="0 0 48 48"><use href="#icon-wind"></use></svg></span>
+            <div>
+              <h3>Neutralisation des odeurs</h3>
+              <p>Une sensation de fraîcheur durable.</p>
+            </div>
+          </div>
+          <div class="tech__item">
+            <span class="tech__item-icon"><svg viewBox="0 0 48 48"><use href="#icon-shield-check"></use></svg></span>
+            <div>
+              <h3>Respecte les matériaux</h3>
+              <p>Mousses, textiles et finitions préservés.</p>
+            </div>
+          </div>
+          <div class="tech__item">
+            <span class="tech__item-icon"><svg viewBox="0 0 48 48"><use href="#icon-headset"></use></svg></span>
+            <div>
+              <h3>Compatible avec intercoms</h3>
+              <p>Fonctionne avec les casques équipés d'accessoires électroniques.</p>
+            </div>
+          </div>
+          <div class="tech__item">
+            <span class="tech__item-icon"><svg viewBox="0 0 48 48"><use href="#icon-helmet"></use></svg></span>
+            <div>
+              <h3>Tous types de casques</h3>
+              <p>Intégral, modulable, jet, karting, automobile, équitation, ski et plus encore.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SECTEURS ============ -->
+  <section class="sectors" id="secteurs">
+    <div class="container">
+      <div class="section-head reveal">
+        <p class="eyebrow">SECTEURS</p>
+        <h2>Une solution. Des dizaines d'applications.</h2>
+        <p class="section-lead">Là où un casque est porté, AIRO a sa place.</p>
+      </div>
+
+      <div class="sectors__grid">
+        <article class="sector-card reveal">
+          <span class="sector-card__icon"><svg viewBox="0 0 48 48"><use href="#icon-moto"></use></svg></span>
+          <h3>Professionnels de la moto</h3>
+          <p>Concessions, magasins, contrôles techniques, ateliers, garages, loueurs.</p>
+        </article>
+        <article class="sector-card reveal">
+          <span class="sector-card__icon"><svg viewBox="0 0 48 48"><use href="#icon-kart"></use></svg></span>
+          <h3>Centres de loisirs</h3>
+          <p>Kartings, bases de loisirs, parcs d'attractions, activités indoor.</p>
+        </article>
+        <article class="sector-card reveal">
+          <span class="sector-card__icon"><svg viewBox="0 0 48 48"><use href="#icon-flag"></use></svg></span>
+          <h3>Sports mécaniques</h3>
+          <p>Circuits automobiles, écuries, écoles de pilotage, compétitions.</p>
+        </article>
+        <article class="sector-card reveal">
+          <span class="sector-card__icon"><svg viewBox="0 0 48 48"><use href="#icon-ski"></use></svg></span>
+          <h3>Sports &amp; loisirs</h3>
+          <p>Ski, snowboard, hockey, BMX, VTT, paintball, airsoft, escalade, escrime.</p>
+        </article>
+        <article class="sector-card reveal">
+          <span class="sector-card__icon"><svg viewBox="0 0 48 48"><use href="#icon-horse"></use></svg></span>
+          <h3>Centres équestres</h3>
+          <p>Clubs, écuries, centres de formation, promenades à cheval.</p>
+        </article>
+        <article class="sector-card reveal">
+          <span class="sector-card__icon"><svg viewBox="0 0 48 48"><use href="#icon-grad"></use></svg></span>
+          <h3>Formation &amp; collectivités</h3>
+          <p>Écoles de conduite, centres de formation, casernes, collectivités.</p>
+        </article>
+      </div>
+
+      <p class="sectors__footer reveal">Un besoin unique. Une solution qui s'adapte à chaque activité.</p>
+    </div>
+  </section>
+
+  <!-- ============ EN SITUATION ============ -->
+  <section class="showcase">
+    <img src="machine-boutique.jpg" alt="Machine AIRO installée dans une concession moto" class="showcase__img">
+    <div class="showcase__overlay"></div>
+    <div class="container showcase__content reveal">
+      <p class="eyebrow">PLUS QU'UNE MACHINE</p>
+      <h2>Un service qui valorise votre activité.</h2>
+      <div class="showcase__grid">
+        <div>
+          <h3>Un nouveau revenu</h3>
+          <p>Chaque nettoyage devient une prestation rentable.</p>
+        </div>
+        <div>
+          <h3>Une meilleure expérience client</h3>
+          <p>Un service innovant, pratique et apprécié de vos clients.</p>
+        </div>
+        <div>
+          <h3>Valorise votre point de vente</h3>
+          <p>Vous vous démarquez de la concurrence et renforcez votre image de marque.</p>
+        </div>
+        <div>
+          <h3>Fidélise vos clients</h3>
+          <p>Ils reviennent naturellement pour utiliser le service… et pour tout le reste.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ MODÈLE ============ -->
+  <section class="model" id="modele">
+    <div class="container">
+      <div class="section-head reveal">
+        <p class="eyebrow">MODÈLE</p>
+        <h2>Une solution qui s'adapte à votre activité</h2>
+      </div>
+
+      <div class="model__grid">
+        <article class="model-card reveal">
+          <span class="model-card__icon"><svg viewBox="0 0 48 48"><use href="#icon-cart"></use></svg></span>
+          <h3>Achat</h3>
+          <p>Vous devenez propriétaire de votre borne. Idéal pour un investissement durable.</p>
+        </article>
+        <article class="model-card reveal">
+          <span class="model-card__icon"><svg viewBox="0 0 48 48"><use href="#icon-calendar"></use></svg></span>
+          <h3>Location</h3>
+          <p>Une solution souple pour démarrer rapidement. Maîtrisez votre budget, restez flexible.</p>
+        </article>
+        <article class="model-card reveal">
+          <span class="model-card__icon"><svg viewBox="0 0 48 48"><use href="#icon-handshake"></use></svg></span>
+          <h3>Partenariat</h3>
+          <p>Nous construisons ensemble le modèle adapté à votre activité.</p>
+        </article>
+      </div>
+
+      <div class="services reveal">
+        <div class="services__item"><svg viewBox="0 0 48 48"><use href="#icon-tools"></use></svg><span>Installation</span></div>
+        <div class="services__item"><svg viewBox="0 0 48 48"><use href="#icon-presentation"></use></svg><span>Formation</span></div>
+        <div class="services__item"><svg viewBox="0 0 48 48"><use href="#icon-shield-check"></use></svg><span>Maintenance</span></div>
+        <div class="services__item"><svg viewBox="0 0 48 48"><use href="#icon-headphones-support"></use></svg><span>Assistance</span></div>
+        <div class="services__item"><svg viewBox="0 0 48 48"><use href="#icon-upload"></use></svg><span>Mises à jour</span></div>
       </div>
     </div>
   </section>
@@ -453,11 +623,11 @@
   <section class="cta-band">
     <div class="container cta-band__row reveal">
       <div>
-        <h2>Prêt à installer une borne AIRO ?</h2>
-        <p>Nos équipes déploient une borne pilote en 4 à 6 semaines, supervision incluse.</p>
+        <h2>Prêt à faire entrer votre établissement dans une nouvelle ère ?</h2>
+        <p>Chaque projet est différent. Notre accompagnement aussi.</p>
       </div>
       <a href="#contact" class="btn btn--primary btn--lg">
-        <span>Demander une démo</span>
+        <span>Devenir partenaire</span>
         <span class="btn__icon" aria-hidden="true">↗</span>
       </a>
     </div>
@@ -468,21 +638,37 @@
     <div class="container contact__grid">
       <div class="contact__info reveal">
         <p class="eyebrow">CONTACT</p>
-        <h2>Parlons de votre projet</h2>
-        <p class="section-lead">Gare, hôtel, salle de sport, aéroport, campus : décrivez-nous votre site et nous reviendrons vers vous avec une configuration adaptée.</p>
+        <h2>Prêt à faire entrer votre établissement dans une nouvelle ère ?</h2>
+        <p class="section-lead">Concession, karting, circuit, club équestre, centre de formation : décrivez-nous votre activité et nous reviendrons vers vous avec une configuration adaptée.</p>
 
         <ul class="contact__list">
           <li>
-            <strong>Email</strong>
-            <a href="mailto:contact@airo-machine.com">contact@airo-machine.com</a>
+            <span class="contact__icon"><svg viewBox="0 0 48 48"><use href="#icon-phone"></use></svg></span>
+            <div>
+              <strong>Téléphone</strong>
+              <a href="tel:+33668731207">06 68 73 12 07</a>
+            </div>
           </li>
           <li>
-            <strong>Téléphone</strong>
-            <a href="tel:+33184620917">+33 1 84 62 09 17</a>
+            <span class="contact__icon"><svg viewBox="0 0 48 48"><use href="#icon-mail"></use></svg></span>
+            <div>
+              <strong>Email</strong>
+              <a href="mailto:Airo.Casque@gmail.com">Airo.Casque@gmail.com</a>
+            </div>
           </li>
           <li>
-            <strong>Bureaux</strong>
-            <span>48 rue des Cévennes, 75015 Paris</span>
+            <span class="contact__icon"><svg viewBox="0 0 48 48"><use href="#icon-instagram"></use></svg></span>
+            <div>
+              <strong>Instagram</strong>
+              <a href="https://instagram.com/airo.officiel" target="_blank" rel="noopener">@Airo.Officiel</a>
+            </div>
+          </li>
+          <li>
+            <span class="contact__icon"><svg viewBox="0 0 48 48"><use href="#icon-tiktok"></use></svg></span>
+            <div>
+              <strong>TikTok</strong>
+              <a href="https://tiktok.com/@airo.officiel" target="_blank" rel="noopener">@Airo.Officiel</a>
+            </div>
           </li>
         </ul>
       </div>
@@ -490,19 +676,19 @@
       <form class="contact__form reveal reveal--delay" id="contactForm" novalidate>
         <div class="form-row">
           <label for="name">Nom complet</label>
-          <input type="text" id="name" name="name" required autocomplete="name" placeholder="Jeanne Dupont">
+          <input type="text" id="name" name="name" required autocomplete="name" placeholder="Julien Martin">
         </div>
         <div class="form-row">
           <label for="email">Adresse email</label>
-          <input type="email" id="email" name="email" required autocomplete="email" placeholder="jeanne@entreprise.com">
+          <input type="email" id="email" name="email" required autocomplete="email" placeholder="julien@concession-moto.fr">
         </div>
         <div class="form-row">
-          <label for="company">Société / Site</label>
-          <input type="text" id="company" name="company" autocomplete="organization" placeholder="Gare Saint-Lazare">
+          <label for="company">Établissement</label>
+          <input type="text" id="company" name="company" autocomplete="organization" placeholder="Karting des 3 Vallées">
         </div>
         <div class="form-row">
           <label for="message">Message</label>
-          <textarea id="message" name="message" rows="5" required placeholder="Parlez-nous de votre projet, du volume estimé d'utilisateurs et du lieu d'installation."></textarea>
+          <textarea id="message" name="message" rows="5" required placeholder="Parlez-nous de votre activité, du volume de casques concerné et du lieu d'installation."></textarea>
         </div>
         <button type="submit" class="btn btn--primary btn--lg btn--block">
           <span>Envoyer la demande</span>
@@ -515,13 +701,13 @@
 
 </main>
 
-<!-- ============ FOOTER ============ -->
 <footer class="footer">
   <div class="container footer__row">
     <a href="#hero" class="brand brand--footer">
-      <span class="brand__mark">A</span>
+      <img src="logo-airo.png" alt="AIRO" class="brand__logo">
       <span class="brand__name">AIRO</span>
     </a>
+    <p class="footer__tagline">Clean. Care. Ride.</p>
     <p>&copy; <span id="year"></span> AIRO. Tous droits réservés.</p>
     <nav class="footer__nav">
       <a href="#fonctionnement">Fonctionnement</a>
@@ -532,5 +718,21 @@
 </footer>
 
 <script src="script.js"></script>
+<script>
+  (function () {
+    var wantsMotion = !window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    var isWide = window.matchMedia("(min-width: 900px)").matches;
+    if (!wantsMotion || !isWide || !window.WebGLRenderingContext) return;
+
+    var three = document.createElement("script");
+    three.src = "three.min.js";
+    three.onload = function () {
+      var room = document.createElement("script");
+      room.src = "room.js";
+      document.body.appendChild(room);
+    };
+    document.body.appendChild(three);
+  })();
+</script>
 </body>
 </html>
